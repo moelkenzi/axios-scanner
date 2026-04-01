@@ -44,7 +44,7 @@ The tool scans the following common development directories:
 
 2.  **Run the scanner:**
     ```bash
-    ./target/release/axios_scanner_2
+    ./target/release/axios_scanner
     ```
 
 ## Interpreting the Output
@@ -53,6 +53,35 @@ The tool scans the following common development directories:
 - If no suspicious versions are found, it will print a `✅ No suspicious axios versions found.` message.
 
 If a suspicious version is detected, the tool will provide recommendations on how to resolve the issue.
+
+## How to Solve
+
+If the scanner detects a suspicious version of `axios`, it is recommended to take the following steps:
+
+1.  **Remove `node_modules` and the lockfile:**
+
+    ```bash
+    rm -rf node_modules package-lock.json
+    ```
+
+2.  **Install a safe version of `axios`:**
+    Install a known safe version, for example `1.14.0`, and save it as an exact version in your `package.json`.
+
+    ```bash
+    npm install axios@1.14.0 --save-exact
+    ```
+
+3.  **Re-install dependencies:**
+
+    ```bash
+    npm ci
+    ```
+
+4.  **Audit your dependencies:**
+    It's always a good practice to audit your project's dependencies for any other potential vulnerabilities.
+    ```bash
+    npm audit
+    ```
 
 ## Disclaimer
 
